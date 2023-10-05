@@ -8,7 +8,7 @@ interface CellProps {
   index: number;
   hiddenCell: number[];
   selectIndex: number | undefined;
-  onSelectedCell: (idx: number, color: string) => void;
+  onSelectedCell: (idx: number) => void;
 }
 
 const Cell: React.FC<CellProps> = ({
@@ -21,7 +21,7 @@ const Cell: React.FC<CellProps> = ({
   // Render cell with shape and color, use CSS to style based on shape and color.
   return (
     <StyledCell
-      onClick={() => onSelectedCell(index, color)}
+      onClick={() => onSelectedCell(index)}
       color={hiddenCell.includes(index) ? "transparent" : color}
       style={{ border: selectIndex === index ? "4px solid green" : "none" }}
     ></StyledCell>
