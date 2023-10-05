@@ -1,2 +1,7 @@
 // your types here
-export {}
+
+interface Color {
+  name: string;
+}
+
+export {};
