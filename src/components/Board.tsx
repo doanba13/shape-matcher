@@ -22,12 +22,8 @@ const getCellData = () => {
 
 const Board: React.FC = () => {
   const [selectedCell, setSelectedCell] = useState<number | undefined>();
+  const [hiddenCell, setHiddenCell] = useState<number[]>([]);
   const [cellData, setCellData] = useState(() => getCellData());
-
-  // states...
-  useEffect(() => {
-    // Initialize the game board with random shapes and colors
-  }, []);
 
   const handleCellClick = (index: number, color: string) => {
     if (!selectedCell) {
@@ -40,7 +36,6 @@ const Board: React.FC = () => {
     }
     const prevCell = cellData[selectedCell];
     const currentCell = cellData[index];
-    console.log(prevCell, currentCell);
     if (prevCell === currentCell) {
       console.log("check");
       const newState = [...cellData];
@@ -49,10 +44,16 @@ const Board: React.FC = () => {
       setCellData(newState);
       setSelectedCell(undefined);
       return;
+    } else {
+      const currentHiddenCell = [...hiddenCell];
+      setHiddenCell((prev) => [...prev, selectedCell, index]);
+      setTimeout(() => setHiddenCell((_) => currentHiddenCell), 1000);
+      setSelectedCell(undefined);
+      return;
     }
   };
 
-  console.log(selectedCell);
+  console.log(hiddenCell);
 
   return (
     <BoardLayout>
@@ -61,6 +62,7 @@ const Board: React.FC = () => {
           key={i}
           color={v}
           index={i}
+          hiddenCell={hiddenCell}
           onSelectedCell={handleCellClick}
           selectIndex={selectedCell}
         />

@@ -6,6 +6,7 @@ interface CellProps {
   // Your code here
   color: string;
   index: number;
+  hiddenCell: number[];
   selectIndex: number | undefined;
   onSelectedCell: (idx: number, color: string) => void;
 }
@@ -15,12 +16,13 @@ const Cell: React.FC<CellProps> = ({
   index,
   onSelectedCell,
   selectIndex,
+  hiddenCell,
 }: CellProps) => {
   // Render cell with shape and color, use CSS to style based on shape and color.
   return (
     <StyledCell
       onClick={() => onSelectedCell(index, color)}
-      color={color}
+      color={hiddenCell.includes(index) ? "transparent" : color}
       style={{ border: selectIndex === index ? "4px solid green" : "none" }}
     ></StyledCell>
   );
