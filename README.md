@@ -42,3 +42,16 @@ Create a simple game that tests a candidate's React and TypeScript skills. The g
 4. Submit the Git URL
 
 This test should take a skilled React/TypeScript developer between 30-60 minutes to complete.
+
+# Solution Overview
+
+1. For layout, i will apply grid layout to Board component with four rows and four columns
+
+2. For Cell component, it will need some props like color and index to identify with other Cell, and a callback to handle click from user
+
+3. Create data for Cell, come from an array of random color. Need to implement an method to get cell data
+
+4. Handle click when user click on Cell:
+   - When no cell revealed
+   - When has cell revealed but color unmatch
+   - When has cell revealed but color match
